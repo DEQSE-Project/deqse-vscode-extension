@@ -1,0 +1,196 @@
+{
+    "name": "deqse",
+    "displayName": "DEQSE",
+    "description": "A tool for quantum computing developed as part of the DEQSE project at the University of Jyväskylä. This work has been supported by the Academy of Finland (project DEQSE 349945).",
+    "version": "0.1.0",
+    "publisher": "University of Jyväskylä",
+    "contributors": [
+        {
+            "name": "Julian Fuchs",
+            "email": "julian.f.fuchs@jyu.fi"
+        },
+        {
+            "name": "Majid Haghparast",
+            "email": "majid.m.haghparast@jyu.fi"
+        }
+    ],
+    "license": "MIT",
+    "categories": [
+        "Other"
+    ],
+    "homepage": "https://github.com/DEQSE-Project/deqse-vscode-extension#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DEQSE-Project/deqse-vscode-extension.git"
+    },
+    "bugs": {
+        "url": "https://github.com/DEQSE-Project/deqse-vscode-extension/issues"
+    },
+    "icon": "out/assets/icons/DEQSE_256x256_white.png",
+    "galleryBanner": {
+        "color": "",
+        "theme": "dark"
+    },
+    "activationEvents": [],
+    "engines": {
+        "vscode": "^1.87.0"
+    },
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "deqse.openTemplatesFolder",
+                "category": "DEQSE",
+                "title": "Open Templates Folder"
+            },
+            {
+                "command": "deqse.saveProjectAsTemplate",
+                "category": "DEQSE",
+                "title": "Save Project as Template"
+            },
+            {
+                "command": "deqse.deleteTemplate",
+                "category": "DEQSE",
+                "title": "Delete Existing Template"
+            },
+            {
+                "command": "deqse.createProjectFromTemplate",
+                "category": "DEQSE",
+                "title": "Create Project from Template"
+            },
+            {
+                "command": "deqse.openCircuitDesigner",
+                "category": "DEQSE",
+                "title": "Open Circuit Designer",
+                "icon": "$(empty-window)"
+            }
+        ],
+        "configuration": [
+            {
+                "title": "Project Creator",
+                "properties": {
+                    "deqse.projectCreator.templatesDirectory": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "Directory to read/store project template folders"
+                    },
+                    "deqse.projectCreator.usePlaceholders": {
+                        "type": "boolean",
+                        "description": "Look for and replace placeholders in template (e.g. #{author})",
+                        "default": true
+                    },
+                    "deqse.projectCreator.placeholderRegExp": {
+                        "type": "string",
+                        "description": "Regular expression for detecting placeholders (e.g. \"#{(\\w+?)}\").  The first capture group dictates the placeholder key.",
+                        "default": "#{(\\w+)?}"
+                    },
+                    "deqse.projectCreator.placeholders": {
+                        "type": "object",
+                        "description": "List of placeholders, in key-value string pairs.",
+                        "default": {}
+                    }
+                }
+            },
+            {
+                "title": "Code Converter",
+                "properties": {
+                    "deqse.codeConverter.input.liveConvert": {
+                        "type": "boolean",
+                        "description": "Specifies whether the input code should be translated on change (while typing) or only on request.",
+                        "default": true
+                    },
+                    "deqse.codeConverter.input.fromFile": {
+                        "type": "boolean",
+                        "description": "Specifies whether to use the currently open file as input instead of the input text area.",
+                        "default": false
+                    }
+                }
+            },
+            {
+                "title": "Circuit Designer",
+                "properties": {
+                    "deqse.circuitDesigner.offlineMode": {
+                        "type": "boolean",
+                        "description": "Specifies whether the circuit designer should be started in offline mode, without requiring an internet connection. Might not use an up-to-date version of the circuit designer.",
+                        "default": true
+                    }
+                }
+            }
+        ],
+        "menus": {
+            "view/title": [
+                {
+                    "command": "deqse.openCircuitDesigner",
+                    "when": "view === deqse.circuitDesigner",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "deqse",
+                    "title": "DEQSE",
+                    "icon": "out/assets/icons/DEQSE_24x24_white.png"
+                }
+            ]
+        },
+        "views": {
+            "deqse": [
+                {
+                    "type": "webview",
+                    "id": "deqse.projectCreator",
+                    "name": "Project Creator",
+                    "contextualTitle": "DEQSE: Project Creator"
+                },
+                {
+                    "type": "webview",
+                    "id": "deqse.codeRunner",
+                    "name": "Code Runner",
+                    "contextualTitle": "DEQSE: Code Runner"
+                },
+                {
+                    "type": "webview",
+                    "id": "deqse.codeConverter",
+                    "name": "Code Converter",
+                    "contextualTitle": "DEQSE: Code Converter"
+                },
+                {
+                    "type": "webview",
+                    "id": "deqse.circuitDesigner",
+                    "name": "Circuit Designer",
+                    "contextualTitle": "DEQSE: Circuit Designer"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run package",
+        "compile": "node ./esbuild.js",
+        "package": "NODE_ENV=production node ./esbuild.js && ./build_quirk.sh",
+        "watch": "node ./esbuild.js --watch",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts"
+    },
+    "devDependencies": {
+        "@fortawesome/fontawesome-free": "^6.5.2",
+        "@types/mocha": "^10.0.6",
+        "@types/node": "18.x",
+        "@types/vscode": "^1.87.0",
+        "@typescript-eslint/eslint-plugin": "^6.19.1",
+        "@typescript-eslint/parser": "^6.19.1",
+        "@vscode/codicons": "^0.0.36",
+        "@vscode/test-cli": "^0.0.4",
+        "@vscode/test-electron": "^2.3.9",
+        "esbuild": "^0.16.17",
+        "esbuild-plugin-copy": "^2.1.1",
+        "eslint": "^8.56.0",
+        "quantum-circuit": "^0.9.222",
+        "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "@vscode/webview-ui-toolkit": "^1.4.0"
+    }
+}

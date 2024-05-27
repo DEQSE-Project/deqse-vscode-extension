@@ -1,0 +1,63 @@
+#from-current-file-checkbox {
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+#error-label-container {
+    margin: 0;
+}
+
+#error-icon {
+    padding-bottom: 3px;
+}
+
+#error-label {
+    cursor: pointer;
+    margin-bottom: -3px;
+    margin-left: -1px;
+    margin-top: 5px;
+}
+
+#error-extended-label {
+    margin-left: 50.5px;
+    margin-top: 0;
+}
+
+#loading-icon {
+    color: var(--vscode-progressBar-background);
+    margin-left: 2px;
+    margin-top: -2px;
+}
+
+#output-button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0px;
+}
+
+#open-button {
+    margin-right: 2px;
+    margin-top: 2px;
+    width: 100%;
+}
+
+#open-icon {
+    margin-right: 3px;
+    padding-top: 1px;
+}
+
+#copy-button {
+    margin-left: 2px;
+    margin-top: 2px;
+    width: 100%;
+}
+
+#copy-icon {
+    margin-right: 2px;
+    padding-top: 1px;
+}
+
+#convert-icon {
+    margin-right: 2px;
+    padding-top: 1px;
+}
