@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
+import * as path from "path";
 
 import { Constants } from "./constants";
 
@@ -46,15 +47,19 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand("deqse.openCircuitDesigner", () => {
-            let circuitDesignerUri = undefined;
             switch (vscode.workspace.getConfiguration("deqse").get("circuitDesigner.offlineMode")) {
                 case true:
                     const panel = vscode.window.createWebviewPanel("circuitDesigner", "Circuit Designer", vscode.ViewColumn.One, { enableScripts: true });
-                    panel.webview.html = fs.readFileSync(getUri(context.extensionUri, Constants.circuitDesignerOfflinePathList).path, "utf-8");
+
+                    let circuitDesignerOfflinePath = getUri(context.extensionUri, Constants.circuitDesignerOfflinePathList).path;
+                    if(process.platform === "win32") {
+                        circuitDesignerOfflinePath = path.win32.normalize(circuitDesignerOfflinePath).slice(1);
+                    }
+
+                    panel.webview.html = fs.readFileSync(circuitDesignerOfflinePath, "utf-8");
                     break;
                 case false:
-                    circuitDesignerUri = vscode.Uri.parse(Constants.circuitDesignerOnlineUrl);
-                    vscode.commands.executeCommand("simpleBrowser.api.open", circuitDesignerUri);
+                    vscode.commands.executeCommand("simpleBrowser.api.open", vscode.Uri.parse(Constants.circuitDesignerOnlineUrl));
                     break;
             }
         })
@@ -97,6 +102,16 @@ export function activate(context: vscode.ExtensionContext) {
             circuitDesignerProvider
         )
     );
+
+    /*
+     * REGISTRATION OF TEMPLATES
+     */
+
+    let qiskitHelloWorldPath = getUri(context.extensionUri, ["out", "project-templates", "qiskit-hello-world"]).path;
+    if(process.platform === "win32") {
+        qiskitHelloWorldPath = path.win32.normalize(qiskitHelloWorldPath).slice(1);
+    }
+    projectTemplatesPlugin.saveAsTemplate(qiskitHelloWorldPath, true);
 }
 
 export function deactivate() {}

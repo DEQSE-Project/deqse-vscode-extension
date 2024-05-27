@@ -271,7 +271,18 @@ export class CodeRunnerProvider implements vscode.WebviewViewProvider {
                     }
                     break;
                 case "runQubitToaster":
-                    exec(`echo '${message.json}' | qubit-toaster - -r probabilities -r measure_all`, (error, stdout, stderr) => {
+                    let command = "";
+
+                    switch (process.platform) {
+                        case "linux":
+                            command = `echo '${message.json}' | qubit-toaster - -r probabilities -r measure_all`;
+                            break;
+                        case "win32":
+                            command = `echo ${message.json} | qubit-toaster - -r probabilities -r measure_all`;
+                            break;
+                    }
+
+                    exec(command, (error, stdout, stderr) => {
                         if (error) {
                             console.error(`Error executing command: ${error.message}`);
                             return;

@@ -87,6 +87,14 @@ const extensionConfig = {
                 to: ["./out/assets/scripts/"],
             },
         }),
+        // Copy `project-templates` to `out` directory unaltered
+        copy({
+            resolveFrom: "cwd",
+            assets: {
+                from: ["./src/project-templates/**/*"],
+                to: ["./out/project-templates/"],
+            },
+        }),
     ],
 };
 

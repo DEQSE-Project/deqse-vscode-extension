@@ -279,58 +279,81 @@ export default class ProjectTemplatesPlugin {
      * @param  workspace absolute path of workspace
      * @returns  name of template
      */
-    public async saveAsTemplate(workspace : string) {
+    public async saveAsTemplate(workspace : string, automatic: boolean = false) {
 
         // ensure templates directory exists
         await this.createTemplatesDirIfNotExists();
 
         let projectName = path.basename(workspace);
 
-        // ask for project name
-        let inputOptions = <vscode.InputBoxOptions> {
-            prompt: "Please enter the desired template name",
-            value: projectName
-        };
-    
-        // prompt user
-        return await vscode.window.showInputBox(inputOptions).then(
-            
-            async filename => {
-    
-                // empty filename exits
-                if (!filename) {
-                    return undefined;
-                }
+        if(automatic) {
 
-                // determine template dir
-                let template = path.basename(filename);
-                let templateDir = path.join(await this.getTemplatesDir(), template);
-                console.log("Destination folder: " + templateDir);
-    
-                // check if exists
-                if (fs.existsSync(templateDir)) {
-                    // confirm over-write
-                    await vscode.window.showQuickPick(["Yes", "No"], { 
-                            placeHolder: "Template '" + filename + "' already exists.  Do you wish to overwrite?" 
-                        }).then(
-                            async (choice) => {
-                                if (choice === "Yes") {
-                                    // delete original and copy new template folder
-                                    await fsutils.deleteDir(templateDir);
-                                    await fsutils.copyDir(workspace, templateDir);
-                                }
-                            },
-                            (reason) => {
-                                return Promise.reject(reason);
-                            });
-                } else {
-                    // copy current workspace to new template folder
-                    await fsutils.copyDir(workspace, templateDir);
-                }
+            let filename = projectName;
 
-                return template;
+            // determine template dir
+            let template = path.basename(filename);
+            let templateDir = path.join(await this.getTemplatesDir(), template);
+            console.log("Destination folder: " + templateDir);
+
+            // check if exists
+            if (fs.existsSync(templateDir)) {
+                // delete original and copy new template folder
+                await fsutils.deleteDir(templateDir);
+                await fsutils.copyDir(workspace, templateDir);
+            } else {
+                // copy current workspace to new template folder
+                await fsutils.copyDir(workspace, templateDir);
             }
-        );
+
+            return template;
+
+        } else {
+            // ask for project name
+            let inputOptions = <vscode.InputBoxOptions> {
+                prompt: "Please enter the desired template name",
+                value: projectName
+            };
+        
+            // prompt user
+            return await vscode.window.showInputBox(inputOptions).then(
+                
+                async filename => {
+        
+                    // empty filename exits
+                    if (!filename) {
+                        return undefined;
+                    }
+
+                    // determine template dir
+                    let template = path.basename(filename);
+                    let templateDir = path.join(await this.getTemplatesDir(), template);
+                    console.log("Destination folder: " + templateDir);
+        
+                    // check if exists
+                    if (fs.existsSync(templateDir)) {
+                        // confirm over-write
+                        await vscode.window.showQuickPick(["Yes", "No"], { 
+                                placeHolder: "Template '" + filename + "' already exists.  Do you wish to overwrite?" 
+                            }).then(
+                                async (choice) => {
+                                    if (choice === "Yes") {
+                                        // delete original and copy new template folder
+                                        await fsutils.deleteDir(templateDir);
+                                        await fsutils.copyDir(workspace, templateDir);
+                                    }
+                                },
+                                (reason) => {
+                                    return Promise.reject(reason);
+                                });
+                    } else {
+                        // copy current workspace to new template folder
+                        await fsutils.copyDir(workspace, templateDir);
+                    }
+
+                    return template;
+                }
+            );
+        }
     }
 
     /**
