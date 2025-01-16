@@ -3,7 +3,7 @@
     "displayName": "DEQSE",
     "description": "A tool for quantum computing developed as part of the DEQSE project at the University of Jyväskylä. This work was supported by the Research Council of Finland [grant number 349945].",
     "version": "0.1.0",
-    "publisher": "University of Jyväskylä",
+    "publisher": "JYUQICTeam",
     "contributors": [
         {
             "name": "Julian Fuchs",
