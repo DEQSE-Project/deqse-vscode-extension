@@ -2,11 +2,11 @@
 
 This guide shows how to develop, test and package the extension.
 
-***Note:** It is recommended to use a Linux-based operating system such as Ubuntu for development. Therefore, this guide focuses only on Linux.*
+**Note:** It is recommended to use a Linux-based operating system such as Ubuntu for development. Therefore, this guide focuses only on Linux.
 
 ## Building the Extension Locally
 
-1. Install [git](https://git-scm.com/download) and [Node.js](https://nodejs.org/en/download) (*recommended to use the nvm package manager*) if not already installed.
+1. Install [git](https://git-scm.com/download) and [Node.js](https://nodejs.org/en/download) (*it is recommended to use the [nvm](https://github.com/nvm-sh/nvm) package manager*) if not already installed.
 
 2. Clone this repository:
 
@@ -40,8 +40,8 @@ This guide shows how to develop, test and package the extension.
 
 4. Run the extension:
 
-    Select `Run > Start Debugging` in the menu bar or press `F5` to debug and test the extension.  
-    To reload the extension once started, for example to apply changes, press `CTRL+SHIFT+F5`.
+    Select <kbd>Run</kbd> > <kbd>Start Debugging</kbd> in the menu bar or press <kbd>F5</kbd> to debug and test the extension.  
+    To reload the extension once started, for example to apply changes, press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F5</kbd>.
 
 ## Packaging the Extension
 
