@@ -28,7 +28,7 @@
     },
     "icon": "out/assets/icons/DEQSE_256x256_white.png",
     "galleryBanner": {
-        "color": "",
+        "color": "#002957",
         "theme": "dark"
     },
     "activationEvents": [],
@@ -74,16 +74,16 @@
                             "string",
                             "null"
                         ],
-                        "description": "Directory to read/store project template folders"
+                        "description": "Directory to read/store project template folders."
                     },
                     "deqse.projectCreator.usePlaceholders": {
                         "type": "boolean",
-                        "description": "Look for and replace placeholders in template (e.g. #{author})",
+                        "description": "Look for and replace placeholders in template (e. g. #{author}).",
                         "default": true
                     },
                     "deqse.projectCreator.placeholderRegExp": {
                         "type": "string",
-                        "description": "Regular expression for detecting placeholders (e.g. \"#{(\\w+?)}\").  The first capture group dictates the placeholder key.",
+                        "description": "Regular expression for detecting placeholders (e. g. \"#{(\\w+?)}\").  The first capture group dictates the placeholder key.",
                         "default": "#{(\\w+)?}"
                     },
                     "deqse.projectCreator.placeholders": {

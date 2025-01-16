@@ -22,6 +22,13 @@ A tool for quantum computing developed as part of the DEQSE project at the Unive
 
 ## Extension Settings
 
+- `deqse.projectCreator.templatesDirectory`: Directory to read/store project template folders.
+- `deqse.projectCreator.usePlaceholders`: Look for and replace placeholders in template (e. g. #{author}).
+- `deqse.projectCreator.placeholderRegExp`: Regular expression for detecting placeholders (e. g. \"#{(\\w+?)}\").  The first capture group dictates the placeholder key.
+- `deqse.projectCreator.placeholders`: List of placeholders, in key-value string pairs.
+- `deqse.codeConverter.input.fromFile`: Specifies whether to use the currently open file as input instead of the input text area.
+- `deqse.circuitDesigner.offlineMode`: Specifies whether the circuit designer should be started in offline mode, without requiring an internet connection. Might not use an up-to-date version of the circuit designer.
+
 ## Setup
 
 To be able to use the Qubit Toaster quantum simulator, execute the following command to install it:
