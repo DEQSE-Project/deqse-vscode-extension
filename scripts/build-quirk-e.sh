@@ -8,7 +8,7 @@ RESET_FORMATTING="\e[0m"
 FILE="${FILE_FORMATTING}$(basename "$0")${RESET_FORMATTING} > "
 
 echo -e "${FILE}${BUSY_FORMATTING}Cloning GitHub Repository...${RESET_FORMATTING}"
-git clone https://github.com/DEQSE-Project/Quirk-E ./tmp/quirk-e/
+git clone git@github.com:DEQSE-Project/Quirk-E.git ./tmp/quirk-e/
 
 cd ./tmp/quirk-e/
 
