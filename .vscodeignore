@@ -1,8 +1,11 @@
+# DIRECTORIES
 .vscode/**
 node_modules/**
 src/**
+
+# FILES
 .gitignore
-build_quirk.sh
+build-quirk-e.sh
 esbuild.js
 **/.eslintrc.json
 **/tsconfig.json
