@@ -1,7 +1,7 @@
 {
     "name": "deqse",
     "displayName": "DEQSE",
-    "description": "A tool for quantum computing developed as part of the DEQSE project at the University of Jyväskylä. This work has been supported by the Academy of Finland (project DEQSE 349945).",
+    "description": "A tool for quantum computing developed as part of the DEQSE project at the University of Jyväskylä. This work was supported by the Research Council of Finland [grant number 349945].",
     "version": "0.1.0",
     "publisher": "University of Jyväskylä",
     "contributors": [
@@ -98,7 +98,7 @@
                 "properties": {
                     "deqse.codeConverter.input.liveConvert": {
                         "type": "boolean",
-                        "description": "Specifies whether the input code should be translated on change (while typing) or only on request.",
+                        "description": "Currently not used.\n\nSpecifies whether the input code should be translated on change (while typing) or only on request.",
                         "default": true
                     },
                     "deqse.codeConverter.input.fromFile": {
@@ -114,7 +114,7 @@
                     "deqse.circuitDesigner.offlineMode": {
                         "type": "boolean",
                         "description": "Specifies whether the circuit designer should be started in offline mode, without requiring an internet connection. Might not use an up-to-date version of the circuit designer.",
-                        "default": true
+                        "default": false
                     }
                 }
             }
@@ -168,27 +168,28 @@
     },
     "scripts": {
         "vscode:prepublish": "npm run package",
+        "clean": "rm -rf ./out/",
         "compile": "node ./esbuild.js",
-        "package": "NODE_ENV=production node ./esbuild.js && ./build_quirk.sh",
+        "package": "npm run clean && NODE_ENV=production node ./esbuild.js && ./scripts/build-quirk-e.sh",
         "watch": "node ./esbuild.js --watch",
         "pretest": "npm run compile && npm run lint",
         "lint": "eslint src --ext ts"
     },
     "devDependencies": {
-        "@fortawesome/fontawesome-free": "^6.5.2",
-        "@types/mocha": "^10.0.6",
-        "@types/node": "18.x",
-        "@types/vscode": "^1.87.0",
-        "@typescript-eslint/eslint-plugin": "^6.19.1",
-        "@typescript-eslint/parser": "^6.19.1",
+        "@fortawesome/fontawesome-free": "^6.7.2",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "22.x",
+        "@types/vscode": "^1.96.0",
+        "@typescript-eslint/eslint-plugin": "^8.20.0",
+        "@typescript-eslint/parser": "^8.20.0",
         "@vscode/codicons": "^0.0.36",
-        "@vscode/test-cli": "^0.0.4",
-        "@vscode/test-electron": "^2.3.9",
-        "esbuild": "^0.16.17",
+        "@vscode/test-cli": "^0.0.10",
+        "@vscode/test-electron": "^2.4.1",
+        "esbuild": "^0.24.2",
         "esbuild-plugin-copy": "^2.1.1",
-        "eslint": "^8.56.0",
-        "quantum-circuit": "^0.9.222",
-        "typescript": "^5.3.3"
+        "eslint": "^9.18.0",
+        "quantum-circuit": "^0.9.226",
+        "typescript": "^5.7.3"
     },
     "dependencies": {
         "@vscode/webview-ui-toolkit": "^1.4.0"
