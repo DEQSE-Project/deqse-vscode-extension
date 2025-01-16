@@ -50,7 +50,7 @@ export class CircuitDesignerProvider implements vscode.WebviewViewProvider {
                     <vscode-button class="full-width" id="open-circuit-designer-button">Open Circuit Designer</vscode-button>
                 </div>
                 <div>
-                    Use <vscode-link href="${Constants.circuitDesignerOnlineUrl}">Quirk</vscode-link> to design and simulate circuits. Toggle <vscode-link id="offline-mode-link">Offline Mode</vscode-link> in the settings.
+                    Use <vscode-link href="${Constants.circuitDesignerOnlineUrl}">Quirk-E</vscode-link> to design and simulate circuits. Toggle <vscode-link id="offline-mode-link">Offline Mode</vscode-link> in the settings.
                 </div>
                 <script type="module" nonce="${nonce}" src="${webviewJsUri}"></script>
                 <script type="text/javascript" nonce="${nonce}">
@@ -78,8 +78,6 @@ export class CircuitDesignerProvider implements vscode.WebviewViewProvider {
                 case "openCircuitDesigner":
                     vscode.commands.executeCommand("deqse.openCircuitDesigner");
                     break;
-            }
-            switch (message.type) {
                 case "openOfflineModeConfiguration":
                     vscode.commands.executeCommand("workbench.action.openSettings", "deqse.circuitDesigner.offlineMode");
                     break;

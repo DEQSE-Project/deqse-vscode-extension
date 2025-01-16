@@ -125,7 +125,8 @@ export class CodeConverterProvider implements vscode.WebviewViewProvider {
                     </div>
                     <div>
                         <label for="output-text-area">Output<i class="icon codicon codicon-loading codicon-modifier-spin" id="loading-icon"></i></label>
-                        <vscode-button data-title="Output Settings" appearance="icon" class="settings-button tooltip left" id="output-settings-button"><span class="codicon codicon-settings"></span></vscode-button>
+                        <!-- TODO: Add output settings  -->
+                        <vscode-button hidden disabled data-title="Output Settings" appearance="icon" class="settings-button tooltip left" id="output-settings-button"><span class="codicon codicon-settings"></span></vscode-button>
                         <vscode-text-area rows="10" resize="vertical" readonly class="full-width code" id="output-text-area"></vscode-text-area>
                         <div id="output-button-container">
                             <vscode-button appearance="secondary" id="open-button"><i class="icon codicon codicon-empty-window" id="open-icon"></i> Open in Circuit Designer</vscode-button>
@@ -135,7 +136,6 @@ export class CodeConverterProvider implements vscode.WebviewViewProvider {
                     <vscode-divider role="separator"></vscode-divider>
                     <div>
                         <vscode-button disabled class="full-width" id="convert-button"><i class="icon codicon codicon-sync" id="convert-icon"></i> Convert</vscode-button>
-                        <vscode-checkbox checked disabled id="live-convert-checkbox">Live Convert <i>(Convert As Typing)</i></vscode-checkbox>
                     </div>
                     <script type="module" nonce="${nonce}" src="${webviewJsUri}"></script>
                     <script type="text/javascript" nonce="${nonce}" src="${quantumCircuitJsUri}"></script>
@@ -398,9 +398,15 @@ export class CodeConverterProvider implements vscode.WebviewViewProvider {
                         /* Callback functions for user interaction */
                         /* document.getElementById("from-current-file-checkbox").addEventListener("change", toggleConvertFromCurrentFile); */
                         document.getElementById("source-language-dropdown").addEventListener("change", convert);
+                        document.getElementById("input-settings-button").addEventListener("click", () => {
+                            vscode.postMessage({ type: "openInputSettings" });
+                        });
                         document.getElementById("input-text-area").addEventListener("input", convert);
                         document.getElementById("error-label").addEventListener("click", toggleErrorLabelExtended);
                         document.getElementById("target-language-dropdown").addEventListener("change", convert);
+                        document.getElementById("output-settings-button").addEventListener("click", () => {
+                            vscode.postMessage({ type: "openOutputSettings" });
+                        });
                         document.getElementById("open-button").addEventListener("click", () => {
                             if (document.getElementById("output-text-area").value != "") {
                                 vscode.postMessage({ type: "openInCircuitDesigner", circuit: JSON.stringify(circuit.exportQuirk(true)) });
@@ -421,6 +427,12 @@ export class CodeConverterProvider implements vscode.WebviewViewProvider {
 
         webviewView.webview.onDidReceiveMessage((message) => {
             switch (message.type) {
+                case "openInputSettings":
+                    vscode.commands.executeCommand("workbench.action.openSettings", "deqse.codeConverter.input");
+                    break;
+                case "openOutputSettings":
+                    vscode.commands.executeCommand("workbench.action.openSettings", "deqse.codeConverter.output");
+                    break;
                 case "openInCircuitDesigner":
                     vscode.commands.executeCommand("simpleBrowser.api.open", vscode.Uri.parse(Constants.circuitDesignerOnlineUrl + "#circuit=" + message.circuit));
                     break;

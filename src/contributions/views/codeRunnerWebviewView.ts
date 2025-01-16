@@ -58,7 +58,8 @@ export class CodeRunnerProvider implements vscode.WebviewViewProvider {
                     <label for="backend-type-dropdown">Backend Type</label>
                     <vscode-dropdown class="full-width" id="backend-type-dropdown">
                         <vscode-option selected value="simulator">Simulator <small><i>(Local)</i></small></vscode-option>
-                        <vscode-option value="cloud">Cloud <small><i>(Extern)</i></small></vscode-option>
+                        <!-- TODO: Add cloud backends-->
+                        <vscode-option disabled value="cloud">Cloud <small><i>(Remote)</i></small></vscode-option>
                     </vscode-dropdown>
                 </div>
                 <div>
@@ -69,7 +70,6 @@ export class CodeRunnerProvider implements vscode.WebviewViewProvider {
                     </vscode-dropdown>
                     <label for="cloud-backend-name-dropdown" id="cloud-backend-name-dropdown-label">Backend Name</label>
                     <vscode-dropdown class="full-width" id="cloud-backend-name-dropdown">
-                        <vscode-option disabled value="ibm-cloud">IBM Cloud <small><i>(Qiskit)</i></small></vscode-option>
                     </vscode-dropdown>
                 </div>
                 <div>

@@ -21,6 +21,6 @@ export const Constants = {
     /*
      * CIRCUIT DESIGNER PATH & URL
      */
-    circuitDesignerOfflinePathList: ["out", "ext", "quirk.html"],
-    circuitDesignerOnlineUrl: "https://algassert.com/quirk",
+    circuitDesignerOfflinePathList: ["out", "external", "quirk-e.html"],
+    circuitDesignerOnlineUrl: "https://quirk-e.dev/",
 } as const;
