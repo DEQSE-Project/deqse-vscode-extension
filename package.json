@@ -26,7 +26,7 @@
     "bugs": {
         "url": "https://github.com/DEQSE-Project/deqse-vscode-extension/issues"
     },
-    "icon": "out/assets/icons/DEQSE_256x256_white.png",
+    "icon": "out/assets/icons/logo_256x256_white.png",
     "galleryBanner": {
         "color": "#002957",
         "theme": "dark"
@@ -133,7 +133,7 @@
                 {
                     "id": "deqse",
                     "title": "DEQSE",
-                    "icon": "out/assets/icons/DEQSE_24x24_white.png"
+                    "icon": "out/assets/icons/logo_24x24_white.png"
                 }
             ]
         },
