@@ -3,7 +3,7 @@
 ![Node Version](https://img.shields.io/badge/DEQSE-v0.1.0-%23002957)
 ![Node Version](https://img.shields.io/badge/Node-v22-%235FA04E?logo=nodedotjs)
 
-A tool for quantum computing developed as part of the DEQSE project at the University of Jyväskylä.
+A tool for quantum computing developed as part of the DEQSE project at the University of Jyvaskyla.
 
 **[Features](#features) - [Extension Settings](#extension-settings) - [Setup](#setup) | [Known Issues](#known-issues) - [Release Notes](#release-notes) | [Contributing](#contributing) | [Attribution](#attribution) - [Acknowledgements](#acknowledgements) | [Contributors](#contributors) - [Contact](#contact)**
 
