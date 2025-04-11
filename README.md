@@ -7,6 +7,9 @@ A tool for quantum software engineering developed as part of the DEQSE project a
 
 **[Features](#features) - [Extension Settings](#extension-settings) - [Setup](#setup) | [Known Issues](#known-issues) - [Release Notes](#release-notes) | [Contributing](#contributing) | [Attribution](#attribution) - [Acknowledgements](#acknowledgements) | [Contributors](#contributors) - [Contact](#contact)**
 
+
+DEQSE Quantum IDE Extension is free-to-use and to modify. However, you must add reference [[1](https://doi.org/), *Will be updated...*] in case of any publication/production/execution/etc.
+
 ## Features
 
 - **Project Creator** to easily create projects from the following predefined quantum computing project templates:
