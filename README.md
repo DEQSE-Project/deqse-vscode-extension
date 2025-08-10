@@ -7,8 +7,12 @@ A Quantum IDE Extension tool for quantum software engineering developed as part 
 
 **[Features](#features) - [Extension Settings](#extension-settings) - [Setup](#setup) | [Known Issues](#known-issues) - [Release Notes](#release-notes) | [Contributing](#contributing) | [Attribution](#attribution) - [Acknowledgements](#acknowledgements) | [Contributors](#contributors) - [Contact](#contact)**
 
+## How to cite
 
-DEQSE Quantum IDE Extension is free-to-use and to modify. However, you must add reference [[1](https://doi.org/), *Will be updated...*] in case of any publication/production/execution/etc.
+DEQSE Quantum IDE Extension is free-to-use and to modify. However, you must add reference [1] in case of any publication/production/execution/etc.
+
+[1] Haghparast, M., Heikkinen, R., Ovaskainen, S., Fuchs, J., Jokinen, J. P., & Mikkonen, T. (2025). DEQSE Quantum IDE Extension: Integrated Tool for Quantum Software Engineering. In 2025 IEEE International Conference on Quantum Computing and Engineering (QCE) (Vol. 3). IEEE. arXiv preprint arXiv:2507.22843.
+
 
 ## Features
 
